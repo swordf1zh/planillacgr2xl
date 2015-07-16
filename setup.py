@@ -1,7 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
+import sys, os
 from cx_Freeze import setup, Executable
+from mods import rth_helper_fns as rth
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+#delete the old build drive
+os.system("rmdir /s /q build")
+
+rth.print_titulo("Iniciando compilación...")
 
 exe = Executable(
         script = 'planillacgr2xl.py',
@@ -9,7 +18,7 @@ exe = Executable(
         targetName = 'Convertir planillas.exe'
         )
 
-includefiles = ['icon.ico']
+includefiles = ['icon.ico', 'README.md', 'LICENSE', ]
 excludes = ['_ssl', 'locale', 'calendar', 'unittest']
 
 build_exe_options = {'include_files':includefiles, 'excludes': excludes}
@@ -22,3 +31,8 @@ setup(
     options = {'build_exe': build_exe_options},
     executables = [exe]
 )
+
+rth.print_titulo("Eliminando basura...")
+os.system("del /s/q *.pyc")
+
+rth.print_titulo("Compilación completa!")
