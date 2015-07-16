@@ -4,7 +4,7 @@
 #from mods import bnp, rth
 
 # encoding=utf8
-import sys
+import sys, os
 from mods import rth_helper_fns as rth, rth_helper_cls as rthCls, Reporte
 
 reload(sys)
@@ -80,8 +80,10 @@ class CgrDoc:
             ]
 
         elif self.tipo == 'descuentos':
-            self.columnas = []
-
+            self.columnas =  [
+                ('Cédula', 13),
+                ('Otros', 1000)
+            ]
 
     def getColKeys(self):
         colKeys = ()
@@ -113,15 +115,32 @@ class CgrDoc:
             self.data += (linea,)
 
 
+def readNload(fileDir):
+    fileInfo = rthCls.Filename(fileDir)
 
-reporte = Reporte.Reporte()
+    if fileInfo.isDir:
+        for file in os.listdir(fileDir):
+            filename = os.path.abspath(os.path.join(fileDir, file))
+            readNload(filename)
 
-for index, file in enumerate(sys.argv):
-    if index > 0:
-        cgrDoc = CgrDoc(file)
+    else:
+        cgrDoc = CgrDoc(fileDir)
         reporte.cargar(cgrDoc.tipo, cgrDoc.data, cgrDoc.getColKeys())
 
-reporte.save()
 
-print '\n\nPresione cualquier tecla para salir...'
-raw_input()
+try:
+    reporte = Reporte.Reporte()
+
+    for index, fileDir in enumerate(sys.argv):
+        if index > 0:
+            readNload(fileDir)
+
+    reporte.save()
+
+except NameError:
+    e = sys.exc_info()[0]
+    print u'Upps.. ocurrió un error:', e
+
+finally:
+    print '\n\nPresione cualquier tecla para salir...'
+    raw_input()
