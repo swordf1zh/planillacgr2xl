@@ -6,7 +6,6 @@ import openpyxl as xls
 class Reporte:
 
     def __init__(self):
-        rth.printToFile('GENERACIÓN DE REPORTE', True)
         self.output = xls.Workbook()
 
 
@@ -41,6 +40,7 @@ class Reporte:
 
 
     def save(self, path = '', nombre = ''):
+        rth.printToFile('Generación de Reporte', True)
         timestamp = int(time.time())
 
         outputName = '%s_%d.xlsx' % ( nombre, timestamp ) if (nombre != '') \
