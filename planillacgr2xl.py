@@ -124,8 +124,9 @@ def readNload(fileDir):
             readNload(filename)
 
     else:
-        cgrDoc = CgrDoc(fileDir)
-        reporte.cargar(cgrDoc.tipo, cgrDoc.data, cgrDoc.getColKeys())
+        if fileInfo.extension == '.txt':
+            cgrDoc = CgrDoc(fileDir)
+            reporte.cargar(cgrDoc.tipo, cgrDoc.data, cgrDoc.getColKeys())
 
 
 try:
@@ -135,7 +136,8 @@ try:
         if index > 0:
             readNload(fileDir)
 
-    reporte.save()
+    path = rthCls.Filename(sys.argv[1]).head
+    reporte.save(path, 'planillas')
 
 except NameError:
     e = sys.exc_info()[0]
