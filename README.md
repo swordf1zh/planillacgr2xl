@@ -21,9 +21,6 @@ python setup.py build
 
 Para usar el programa, simplemente hay que arrastrar las carpetas o archivos de planillas y/o descuentos hasta el ejecutable.
 
-## Pendiente
-    [ ] Conseguir el título y ancho de las columnas para cada hoja.
-
 ## ¿Cómo contribuir?
 Favor mantener el estilo de codificación y usar esta [convención] para los commits.
 
