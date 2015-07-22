@@ -28,6 +28,6 @@ Favor mantener el estilo de codificación y usar esta [convención] para los com
 v0.0.1 - versión inicial
 
 ## Licencia
-Copyright (c) 2015 Ricardo Tribaldos. Licenciado bajo licencia MIT.
+Copyright (c) 2015 Ricardo Tribaldos. Este programa es distribuido bajo licencia pública general GNU (GNU General Public License).
 
 [convención]:https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y
