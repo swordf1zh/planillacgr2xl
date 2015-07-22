@@ -45,26 +45,6 @@ class CgrDoc:
         return tipo
 
 
-    def getCedula(self, cedula):
-        cedulaParts = (2,2,4,5)
-
-        cursorIni = 0
-        cedulaPre = []
-
-        for part in cedulaParts:
-            cursorEnd = cursorIni + part
-
-            formattedPart = cedula[cursorIni:cursorEnd] \
-                            .lstrip('0') \
-                            .strip(' ')
-            cedulaPre.append(formattedPart)
-
-            cursorIni = cursorEnd
-
-        return '%s-%s-%s' % (cedulaPre[0] + cedulaPre[1], \
-                             cedulaPre[2], cedulaPre[3])
-
-
     def setColumnas(self):
         if self.tipo == 'salarios':
             self.columnas = colSalarios
@@ -92,10 +72,7 @@ class CgrDoc:
                 cursorEnd = cursorIni + largo
 
                 data = lineaRaw[cursorIni:cursorEnd].strip(' ')
-
-                linea = linea + (self.getCedula(data),) \
-                        if (columna == 'Cédula')  \
-                        else linea + (data,)
+                linea += (data,)
 
                 cursorIni = cursorEnd
 
