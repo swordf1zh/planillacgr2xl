@@ -22,8 +22,7 @@ def ver_objeto(object,showValor=False):
     get_propiedades(object,showValor)
 
 def print_titulo(titulo):
-    sep = '-' * 60
-    print u'\n\n%s\n%s' % (titulo, sep)
+    print u'\n\n%s\n%s' % (titulo, '-' * len(titulo))
 
 def getExtension(name):
     filename = os.path.abspath(name)
@@ -33,11 +32,12 @@ def getExtension(name):
         return extension
 
 def printToFile(msg, title = False, rep = False):
-    lineASCII = str(msg) + '\n'
+    lineASCII = str(msg)
     lineUnicode = unicode( lineASCII, "utf-8" )
-    line = lineUnicode if (not title) \
-           else '\n'*2 + lineUnicode + '-' * 50 + '\n'
-    print line,
+    if title:
+        print_titulo(lineUnicode)
+    else:
+        print lineUnicode + '\n',
 
     '''
     fileName = 'outputREP.txt' if (rep) else 'output.txt'

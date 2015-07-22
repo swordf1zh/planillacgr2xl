@@ -32,9 +32,15 @@ try:
     path = rthCls.Filename(sys.argv[1]).head
     reporte.save(path, 'planillas')
 
+    print '\n\nPROCESO FINALIZADO CON EXITO!'
+
 except NameError:
     e = sys.exc_info()[0]
     print u'¡Upps.. ocurrió un error!\n\nPor favor, intente nuevamente.', e
+
+except IndexError:
+    print (u'\n\n\nPara usar este programa simplemente arrastre los archivos \n' +
+           u'a procesar hasta el ícono del programa en el escritorio.\n')
 
 finally:
     print '\n\nPresione cualquier tecla para salir...'

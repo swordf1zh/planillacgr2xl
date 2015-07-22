@@ -33,14 +33,14 @@ class Reporte:
             for row in data:
                 sheet.append(row)
 
-            msg = 'Se creó la hoja <%s>, se agregaron [ %d ] registros' \
+            msg = 'Se creó la hoja <%s> y se agregaron [ %d ] registros' \
                   % (hoja, len(data))
             rth.printToFile(msg)
             return msg
 
 
     def save(self, path = '', nombre = ''):
-        rth.printToFile('Generación de Reporte', True)
+        rth.printToFile('Generando reporte en formato de Excel', True)
         timestamp = int(time.time())
 
         outputName = '%s_%d.xlsx' % ( nombre, timestamp ) if (nombre != '') \
@@ -54,7 +54,7 @@ class Reporte:
                 os.makedirs(outputFilePath)
             outputFileName = os.path.normpath(os.path.join(outputFilePath, outputName))
 
-        msg = '\nGuardando archivo: %s' % outputFileName
+        msg = 'Guardando archivo con el nombre:\n%s' % outputFileName
         rth.printToFile(msg)
         self.output.save(outputFileName)
         return 'El reporte se guardó con el nombre: %s' \
