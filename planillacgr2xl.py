@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys, os
-from mods import rth_helper_cls as rthCls, Reporte
+from mods import rth_helper_cls as rthCls, rth_helper_fns as rth, Reporte
 from CgrDoc_cls import *
 
 # encoding=utf8
@@ -23,6 +23,10 @@ def readNload(fileDir):
 
 
 try:
+    titl = 'PROCESADOR DE PLANILLAS DE LA CONTRALORIA GENERAL DE LA REPUBLICA'
+    ver = 'v0.1.0'
+    rth.printTxtHeader(titl, ver)
+
     reporte = Reporte.Reporte()
 
     for index, fileDir in enumerate(sys.argv):

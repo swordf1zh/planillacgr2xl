@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os, datetime
+from rth_helper_cls import *
 
 def get_metodos(object,showValor=False):
     metodos = [metodo for metodo in dir(object) if hasattr(getattr(object, metodo), '__call__')]
@@ -58,3 +59,15 @@ def getMyDate(dateLike):
         for d in dateLike.split(splitBy):
             date += d[-2:]
         return date
+
+def printTxtHeader(titl, ver):
+    dev = ['Desarrollado por:',\
+           'Ricardo Tribaldos H.',\
+           '<ricardo@tribaldos.org>']
+
+    txtHeader = TxtTitleBox(titl)
+    txtHeader.addLinea(ver)
+    txtHeader.addLinea()
+    txtHeader.addLinea(dev, 'r')
+
+    print txtHeader.getBox()
