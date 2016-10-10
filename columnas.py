@@ -76,3 +76,19 @@ colDesctos =  [
     ('Apellido', 15),
     ('Blanco', 1)
 ]
+
+colConciliacion = [
+    ('# de Cheque', 7),
+    ('Fecha', 8),
+    ('Entidad', 2),
+    ('Planilla', 3),
+    ('Filler', 2),
+    ('Posicion', 5),
+    ('Digito de Verificacion', 1),
+    ('Cedula', 10),
+    ('Filler', 2),
+    ('Demandante', 28),
+    ('Clave', 5),
+    ('Monto', 7),
+    ('Filler', 2)
+]
