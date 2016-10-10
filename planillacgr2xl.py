@@ -27,11 +27,22 @@ def readNload(fileDir):
 
 try:
     reporte = Reporte.Reporte()
+    if len(sys.argv) == 1:
+        raise rthCls.MyException('DragOnly')
 
     for index, fileDir in enumerate(sys.argv):
         if index > 0:
             readNload(fileDir)
 
+except rthCls.MyException as e:
+    if str(e) == 'DragOnly':
+        msg = (
+        'ADVERTENCIA:\n'
+        'Para utilizar este programa debe arrastrar los archivos a procesar \n'
+        'y arrojarlos sobre el ícono del programa. \n\n'
+        '¡Intente nuevamente!'
+        )
+        rth.printToFile(msg)
     path = rthCls.Filename(sys.argv[1]).head
     reporte.save(path, 'planillas')
 
