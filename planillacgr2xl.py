@@ -3,6 +3,7 @@
 import sys, os
 from mods import rth_helper_cls as rthCls, Reporte
 from CgrDoc_cls import *
+from bigText import *
 
 # encoding=utf8
 reload(sys)
@@ -26,6 +27,8 @@ def readNload(fileDir):
 
 
 try:
+    rth.printToFile(bigTitle)
+
     cgrDocs = ();
 
     if len(sys.argv) == 1:
@@ -46,6 +49,7 @@ try:
 
         path = rthCls.Filename(sys.argv[1]).head
         reporte.save(path, 'planillas')
+        rth.printToFile('¡LISTO!')
 
 except rthCls.MyException as e:
     if str(e) == 'DragOnly':
@@ -57,9 +61,12 @@ except rthCls.MyException as e:
         )
         rth.printToFile(msg)
 
-except NameError:
-    e = sys.exc_info()[0]
-    print u'¡Upps.. ocurrió un error!\n\nPor favor, intente nuevamente.', e
+except:
+    msg = (
+    '¡Upps.. ocurrió un error! \n\n'
+    'Por favor, intente nuevamente.'
+    )
+    rth.printToFile(msg)
 
 finally:
     print '\n\nPresione cualquier tecla para salir...'

@@ -24,12 +24,15 @@ class CgrDoc:
         fileData = open(path, 'r')
 
         fileList = ()
+        count = 0
 
         for line in fileData:
             fileList += (line, )
+            count += 1
 
         fileData.close()
 
+        rth.printToFile(' - %d líneas' % count)
         return fileList
 
 
@@ -102,6 +105,7 @@ class CgrDoc:
         cents = montoStr[decIndex:]
 
         return float(dollar + '.' + cents)
+
     def procesarData(self):
         self.setColumnas()
 
