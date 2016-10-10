@@ -26,13 +26,26 @@ def readNload(fileDir):
 
 
 try:
-    reporte = Reporte.Reporte()
+    cgrDocs = ();
+
     if len(sys.argv) == 1:
         raise rthCls.MyException('DragOnly')
 
     for index, fileDir in enumerate(sys.argv):
         if index > 0:
-            readNload(fileDir)
+            cgrDocs += (readNload(fileDir),)
+
+    cgrDocsFlat = [element for tupl in cgrDocs for element in tupl]
+
+    if len(cgrDocsFlat) > 0:
+        rth.printToFile('Generando archivo de Excel', True)
+        reporte = Reporte.Reporte()
+
+        for cgrDoc in cgrDocsFlat:
+            reporte.cargar(cgrDoc.tipo, cgrDoc.data, cgrDoc.getColKeys())
+
+        path = rthCls.Filename(sys.argv[1]).head
+        reporte.save(path, 'planillas')
 
 except rthCls.MyException as e:
     if str(e) == 'DragOnly':
@@ -43,8 +56,6 @@ except rthCls.MyException as e:
         '¡Intente nuevamente!'
         )
         rth.printToFile(msg)
-    path = rthCls.Filename(sys.argv[1]).head
-    reporte.save(path, 'planillas')
 
 except NameError:
     e = sys.exc_info()[0]
