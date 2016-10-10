@@ -50,7 +50,7 @@ class Reporte:
                 os.makedirs(outputFilePath)
             outputFileName = os.path.normpath(os.path.join(outputFilePath, outputName))
 
-        msg = '\n - Guardando archivo con el nombre:\n%s\n   ...\n' % outputFileName
+        msg = '\n - Guardando archivo con el nombre:\n   %s\n   ...\n' % outputFileName
         rth.printToFile(msg)
         self.output.save(outputFileName)
         return 'El reporte se guardó con el nombre: %s' \

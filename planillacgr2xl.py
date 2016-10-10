@@ -3,7 +3,6 @@
 import sys, os
 from mods import rth_helper_cls as rthCls, rth_helper_fns as rth, Reporte
 from CgrDoc_cls import *
-from bigText import *
 
 # encoding=utf8
 reload(sys)
@@ -27,7 +26,9 @@ def readNload(fileDir):
 
 
 try:
-    rth.printToFile(bigTitle)
+    titl = 'PROCESADOR DE PLANILLAS DE LA CONTRALORIA GENERAL DE LA REPUBLICA'
+    ver = 'v1.0.0'
+    rth.printTxtHeader(titl, ver)
 
     cgrDocs = ();
 
@@ -54,7 +55,7 @@ try:
 except rthCls.MyException as e:
     if str(e) == 'DragOnly':
         msg = (
-        'ADVERTENCIA:\n'
+        '\n\nADVERTENCIA:\n'
         'Para utilizar este programa debe arrastrar los archivos a procesar \n'
         'y arrojarlos sobre el ícono del programa. \n\n'
         '¡Intente nuevamente!'
