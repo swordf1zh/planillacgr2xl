@@ -95,6 +95,12 @@ class CgrDoc:
 
         return colKeys
 
+    def getMontoConc(self, montoStr):
+        decIndex = len(montoStr)-2
+        dollar = montoStr[:decIndex]
+        cents = montoStr[decIndex:]
+
+        return float(dollar + '.' + cents)
     def procesarData(self):
         self.setColumnas()
 
