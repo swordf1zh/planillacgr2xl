@@ -40,8 +40,16 @@ class CgrDoc:
         for line in fileData:
             maxLen = len(line) if (len(line) > maxLen) else maxLen
 
-        tipo = 'salarios' if (maxLen > 200) else 'descuentos'
+        if self.fileData.extension == '.txt':
+            tipo = 'salarios' if (maxLen > 200) else 'descuentos'
+        else:
+            if self.fileData.name == 'Regdsc' and maxLen >= 80 and maxLen <= 82:
+                tipo = 'conciliacion'
+            else:
+                raise IOError('No podemos procesar este archivo: %s' \
+                              % self.fileData.filext)
 
+        rth.printToFile(' - Archivo de %s' % tipo)
         return tipo
 
 
@@ -71,6 +79,13 @@ class CgrDoc:
 
         elif self.tipo == 'descuentos':
             self.columnas =  colDesctos
+
+        elif self.tipo == 'conciliacion':
+            self.columnas =  colConciliacion
+
+        else:
+            raise IOError('No podemos procesar este archivo: %s' \
+                          % self.fileData.filext)
 
     def getColKeys(self):
         colKeys = ()
