@@ -91,7 +91,8 @@ class CgrDoc:
         colKeys = ()
 
         for columna, largo in self.columnas:
-            colKeys += (columna,)
+            if columna != 'Filler':
+                colKeys += (columna,)
 
         return colKeys
 
@@ -109,14 +110,13 @@ class CgrDoc:
             linea = ()
 
             for columna, largo in self.columnas:
-
                 cursorEnd = cursorIni + largo
-
                 data = lineaRaw[cursorIni:cursorEnd].strip(' ')
-
-                linea = linea + (self.getCedula(data),) \
-                        if (columna == 'Cédula')  \
-                        else linea + (data,)
+                if columna != 'Filler':
+                    if self.tipo == 'conciliacion' and columna == 'Monto':
+                        linea += (self.getMontoConc(data),)
+                    else:
+                        linea += (data,)
 
                 cursorIni = cursorEnd
 
