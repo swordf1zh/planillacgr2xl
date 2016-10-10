@@ -12,14 +12,17 @@ def readNload(fileDir):
     fileInfo = rthCls.Filename(fileDir)
 
     if fileInfo.isDir:
+        ready2import = ();
         for file in os.listdir(fileDir):
             filename = os.path.abspath(os.path.join(fileDir, file))
-            readNload(filename)
+            ready2import += (readNload(filename),)
+        return ready2import
 
     else:
-        if fileInfo.extension == '.txt':
+        if fileInfo.extension == '.txt' or fileInfo.name == 'Regdsc':
             cgrDoc = CgrDoc(fileDir)
-            reporte.cargar(cgrDoc.tipo, cgrDoc.data, cgrDoc.getColKeys())
+            rth.printToFile(' - Lectura de archivo completa')
+            return (cgrDoc,)
 
 
 try:
