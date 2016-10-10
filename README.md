@@ -25,6 +25,11 @@ Para usar el programa, simplemente hay que arrastrar las carpetas o archivos de 
 Favor mantener el estilo de codificación y usar esta [convención] para los commits.
 
 ## Versiones
+- v1.0.0
+  - Se incluyen columnas para conciliaciones de descuentos.
+  - Se mejora despliegue de mensajes.
+  - Se mejora la lógica en el programa principal.
+
 - v0.1.0
   - Se incluyen archivos de referencia de la CGR con la descripción de las columnas.
   - Se establecen títulos y anchos para todas las columnas a procesar.
