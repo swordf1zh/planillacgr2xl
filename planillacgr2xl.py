@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys, os
-from mods import rth_helper_cls as rthCls, Reporte
+from mods import rth_helper_cls as rthCls, rth_helper_fns as rth, Reporte
 from CgrDoc_cls import *
 from bigText import *
 

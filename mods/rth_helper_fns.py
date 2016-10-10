@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os, datetime
+from rth_helper_cls import *
 
 def get_metodos(object,showValor=False):
     metodos = [metodo for metodo in dir(object) if hasattr(getattr(object, metodo), '__call__')]
@@ -22,8 +23,7 @@ def ver_objeto(object,showValor=False):
     get_propiedades(object,showValor)
 
 def print_titulo(titulo):
-    sep = '-' * 60
-    print u'\n\n%s\n%s' % (titulo, sep)
+    print u'\n\n%s\n%s' % (titulo, '-' * len(titulo))
 
 def getExtension(name):
     filename = os.path.abspath(name)
@@ -33,11 +33,12 @@ def getExtension(name):
         return extension
 
 def printToFile(msg, title = False, rep = False):
-    lineASCII = str(msg) + '\n'
+    lineASCII = str(msg)
     lineUnicode = unicode( lineASCII, "utf-8" )
-    line = lineUnicode if (not title) \
-           else '\n'*2 + lineUnicode + '-' * 50 + '\n'
-    print line,
+    if title:
+        print_titulo(lineUnicode)
+    else:
+        print lineUnicode + '\n',
 
     '''
     fileName = 'outputREP.txt' if (rep) else 'output.txt'
@@ -58,3 +59,15 @@ def getMyDate(dateLike):
         for d in dateLike.split(splitBy):
             date += d[-2:]
         return date
+
+def printTxtHeader(titl, ver):
+    dev = ['Desarrollado por:',\
+           'Ricardo Tribaldos H.',\
+           '<ricardo@tribaldos.org>']
+
+    txtHeader = TxtTitleBox(titl)
+    txtHeader.addLinea(ver)
+    txtHeader.addLinea()
+    txtHeader.addLinea(dev, 'r')
+
+    print txtHeader.getBox()
